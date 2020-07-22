@@ -1,0 +1,25 @@
+.grid__main {
+  grid-area: popularProducts;
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 0.5rem;
+    grid-auto-rows: 290px;
+  }
+
+  h1 {
+    margin-top: 120px;
+  }
+
+  .products-loader-container {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .products-loader {
+    height: 70%;
+  }
+}
