@@ -18,11 +18,13 @@ class SearchBar extends React.Component {
           <FaSearch className="icon" />
           <input
             type="text"
-            placeholder="search"
+            placeholder="search for products"
             value={this.state.searchText}
             onChange={(e) => this.setState({ searchText: e.target.value })}
           />
-          {/* <div className="delete">&#10005;</div> */}
+          {this.state.searchText ? (
+            <div className="delete">&#10005;</div>
+          ) : null}
         </div>
       </div>
     );

@@ -8,13 +8,13 @@ import { SHOP_DATA } from "../../../shopData";
 import "./popularProducts.scss";
 
 class PopularProducts extends React.Component {
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     products: SHOP_DATA.collections,
-  //     productsLoading: false
-  //   }
-  // }
+  constructor() {
+    super();
+    this.state = {
+      products: SHOP_DATA.collections,
+      productsLoading: false
+    }
+  }
 
   // handleScroll = (e) => {
   //   if(document.body.scrollHeight - window.scrollY < 2 * window.innerHeight &&
@@ -25,7 +25,7 @@ class PopularProducts extends React.Component {
   //       // Imituojamas duomenu gavimas is API
   //     setTimeout(() => {
   //       this.setState({ 
-  //         products: [...this.state.products],
+  //         products: [...this.state.products, ...SHOP_DATA.collections],
   //         productsLoading: false
   //       })
   //     }, 2000);
@@ -42,15 +42,11 @@ class PopularProducts extends React.Component {
           <h1>Popular Products</h1>
           <hr />
           <div className="product-grid">
-            {SHOP_DATA.collections.map(({ id, ...otherProps }) => (
+            {this.state.products.map(({ id, ...otherProps }) => (
               <Product key={id} {...otherProps} />
             ))}
           </div>
-          {/* {this.state.productsLoading ? (
-            <div className="products-loader-container">
-              <img className="products-loader" src={loadingGif} alt="" />
-            </div>
-          ) : null} */}
+          
         </div>
       </section>
     );

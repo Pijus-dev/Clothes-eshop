@@ -1,0 +1,29 @@
+.sign-up-content {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .sign-up {
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+    padding: 5px 30px 20px 30px;
+    box-shadow: 2px 3px 4px 5px #eee;
+    border-radius: 8px;
+    background-image: url('https://images.unsplash.com/photo-1434389677669-e08b4cac3105?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=949&q=80');
+    background-size: cover;
+
+    .title {
+      margin: 10px 0;
+    }
+
+    .custom-button {
+      // background-color: #cec78c;
+
+      &:hover {
+        background-color: white;
+      }
+    }
+  }
+}

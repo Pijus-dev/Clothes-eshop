@@ -1,14 +1,20 @@
+$tablet-breakpoint: "screen and (min-width : 768px)";
+$desktop: "screen and (min-width: 1186px)";
+
 .search {
   padding: 5px;
   margin-top: 10px;
   margin-bottom: 10px;
- 
+  width: 97%;
+  margin: 0 auto;
+
+  @media #{$desktop} {
+    width: 98.5%;
+  }
+
   .search-group {
     position: relative;
-    margin-left: 12px;
     display: flex;
-
-   
 
     .icon {
       position: absolute;
@@ -16,18 +22,45 @@
       left: 1.5%;
       height: 12px;
       color: rgb(161, 153, 153);
+
+      @media #{$desktop} {
+        left: 0.4%;
+        top: 30%;
+      }
     }
 
     input {
-      width: 95%;
-      border-radius: 4px;
+      width: 100%;
+      border-radius: 8px;
       border-color: #eee;
       padding-left: 20px;
       height: 28px;
+
+      @media #{$tablet-breakpoint} {
+        padding-left: 20px;
+      }
+
+      @media #{$desktop} {
+        height: 28px;
+        font-size: 16px;
+        letter-spacing: 1.23px;
+      }
+    }
+
+    .delete {
+      position: absolute;
+      right: 1%;
+      top: 20%;
+      cursor: pointer;
+      color: rgb(156, 151, 151);
     }
 
     ::placeholder {
       letter-spacing: 1.23px;
+
+      @media #{$desktop} {
+        font-size: 16px;
+      }
     }
   }
 }

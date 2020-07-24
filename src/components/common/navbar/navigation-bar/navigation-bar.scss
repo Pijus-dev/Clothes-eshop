@@ -1,0 +1,18 @@
+.navigation-bar {
+  display: flex;
+  margin-top: 20px;
+
+  a {
+    margin-right: 10px;
+    text-decoration: none;
+    color: black;
+    font-size: 1.123rem;
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+  }
+
+  @media screen and (max-width: 624px) {
+    display: none;
+  }
+}

@@ -28,5 +28,33 @@ export const SHOP_DATA = {
       price: 50,
       name: "Leather Jacket",
     },
+    {
+      id: "5",
+      imageUrl:
+        "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80",
+      price: 25,
+      name: "Denim Jeans",
+    },
+    {
+      id: "6",
+      imageUrl:
+        "https://images.unsplash.com/photo-1567004555533-b7add198f83f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80",
+      price: 25,
+      name: "Skirt",
+    },
+    {
+      id: "7",
+      imageUrl:
+        "https://images.unsplash.com/photo-1576208230153-d898a0a89ce0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=935&q=80",
+      price: 80,
+      name: "Brown Sweater",
+    },
+    {
+      id: "8",
+      imageUrl:
+        "https://images.unsplash.com/photo-1582830359896-d2e492f4a0fe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=932&q=80",
+      price: 90,
+      name: "Blue Denim Jeans",
+    },
   ],
 };

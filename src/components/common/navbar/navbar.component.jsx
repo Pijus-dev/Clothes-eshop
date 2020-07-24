@@ -1,7 +1,11 @@
 import React from "react";
-import "./navbar.scss";
+import styles from "./navbar.module.scss";
+
+import { Link } from "react-router-dom";
 
 import SearchBar from "./searchBar/searchBar";
+import { Route, Switch } from "react-router-dom";
+import SignIn from "../sign-in/signIn.component";
 
 import logo from "/Users/user/Desktop/REACT/pamoka/src/img/logotipas.jpg";
 
@@ -10,7 +14,6 @@ class Navbar extends React.Component {
     super();
 
     this.state = {
-      showMenu: false,
       className: "",
     };
   }
@@ -31,27 +34,27 @@ class Navbar extends React.Component {
   };
 
   render() {
-    const { showMenu } = this.state;
+    const { className } = this.state;
     return (
       <nav>
-        <div className={this.state.className}>
-          <div className="nav-border">
-            <div className="nav-container">
-              <div className="logo">
+        <div className={className}>
+          <div className={styles.navBorder}>
+            <div className={styles.navContainer}>
+              <div className={styles.logo}>
                 <img src={logo} alt="" />
               </div>
-              <div
-                className={"menu-expand" + (showMenu ? " expanded" : "")}
-                onClick={() => this.setState({ showMenu: !showMenu })}
-              >
-                <span></span>
-                <span></span>
-                <span></span>
+              <div className={styles.searchExpand}>
+                <SearchBar />
+                <Link className="links" to="/">HOME</Link>
+                <Link className="links" to="/signin">REGISTER</Link>
+                <Link className="links" to="/signin">LOGIN</Link>
               </div>
             </div>
           </div>
         </div>
-        <SearchBar />
+        <div className={styles.mobileSearch}>
+          <SearchBar />
+        </div>
       </nav>
     );
   }
