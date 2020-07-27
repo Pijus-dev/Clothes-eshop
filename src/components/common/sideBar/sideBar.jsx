@@ -3,7 +3,7 @@ import { bubble as Menu } from "react-burger-menu";
 
 import girlIcon from "../../../img/boy.svg";
 import boyIcon from "../../../img/girl.svg";
-import logo from "../../../img/logotipas.jpg";
+import logo from "../../../img/crown.svg";
 import accessories from "../../../img/icons/manOther.svg";
 import manShoes from "../../../img/icons/manShoes.svg";
 import girlShoe from "../../../img/icons/girlShoe.svg";

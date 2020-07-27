@@ -9,6 +9,7 @@ $desktop: "screen and (min-width: 1186px)";
     grid-template-columns: 1fr 1fr;
     grid-gap: 1rem;
     grid-auto-rows: 450px;
+    padding-bottom: 100px;
 
     @media #{$tablet-breakpoint} {
       grid-template-columns: 1fr 1fr 1fr;

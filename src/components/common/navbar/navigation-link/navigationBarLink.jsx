@@ -9,13 +9,19 @@ class NavigationBarLink extends React.Component {
   }
 
   render() {
-    const { title, link, categories } = this.props;
+    const { title, link, categories, handleChange, showMenu, } = this.props;
     return (
       <span className="navigation-bar__link">
-        <a className="navigation-bar__link__href" href={link ?? ""}>
+        <a
+          className={`${showMenu ? "active" : null} navigation-bar__link__href`}
+          href={link ?? null}
+          onClick={handleChange}
+        >
           {title}
         </a>
-        {categories ? <NavigationDropdown /> : null}
+        {categories ? (
+          <NavigationDropdown open={showMenu} categories={categories} />
+        ) : null}
       </span>
     );
   }

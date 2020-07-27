@@ -8,8 +8,7 @@ class Advert extends React.Component {
     return (
       <aside className={styles.gridAdvert}>
         <div className="container">
-          <div className={styles.advert}>
-          </div>
+          <div className={styles.advert}></div>
           <Navigationbar />
         </div>
       </aside>

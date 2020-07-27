@@ -1,3 +1,29 @@
-.grid__footer {
-    grid-area: footer;
+.footer {
+  height: 70px;
+  width: 100%;
+  background-color: black;
+  position: fixed;
+  bottom: 0;
+
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .title {
+    color: white;
+    font-size: 1rem;
+  }
+
+  .icons > * {
+    color: white;
+    margin-right: 15px;
+    font-size: 1.123rem;
+    cursor: pointer;
+    transition: transform 0.25s ease-out;
+
+    &:hover {
+      transform: scale(1.4);
+    }
+  }
 }

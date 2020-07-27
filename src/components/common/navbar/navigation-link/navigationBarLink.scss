@@ -1,4 +1,18 @@
 .navigation-bar__link {
   position: relative;
 
+  .navigation-bar__link__href {
+    margin-right: 10px;
+    text-decoration: none;
+    color: black;
+    font-size: 1.123rem;
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .active {
+    background-color: black;
+    color: white;
+  }
 }

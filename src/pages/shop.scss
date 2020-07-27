@@ -1,9 +1,8 @@
 .grid {
   display: grid;
   grid-template-areas:
-    "navbar"
     "advert"
     "popularProducts";
   grid-template-columns: auto;
-  grid-template-rows: 100px auto auto;
+  grid-template-rows: auto auto;
 }
