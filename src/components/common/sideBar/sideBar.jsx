@@ -1,5 +1,5 @@
 import React from "react";
-import { bubble as Menu } from "react-burger-menu";
+import { slide as Menu } from "react-burger-menu";
 
 import girlIcon from "../../../img/boy.svg";
 import boyIcon from "../../../img/girl.svg";
@@ -10,6 +10,8 @@ import girlShoe from "../../../img/icons/girlShoe.svg";
 import other from "../../../img/icons/other.svg";
 
 import CustomButton from "../../common/customButton/customButton";
+
+import { withRouter } from "react-router-dom";
 
 import "./sidebar.scss";
 
@@ -24,13 +26,30 @@ class SideBar extends React.Component {
   }
 
   render() {
+    const { history } = this.props;
     return (
       <Menu {...this.props}>
         <div className="image">
           <img src={logo} alt="" />
         </div>
-        <CustomButton className="custom-button">REGISTER</CustomButton>
-        <CustomButton className="custom-button inverted">SIGN UP</CustomButton>
+        <CustomButton
+          onClick={() => history.push("/signin")}
+          className="custom-button"
+        >
+          REGISTER
+        </CustomButton>
+        <CustomButton
+          onClick={() => history.push("/login")}
+          className="custom-button inverted"
+        >
+          LOGIN
+        </CustomButton>
+        <CustomButton
+          onClick={() => history.push("/")}
+          className="home custom-button"
+        >
+          HOME
+        </CustomButton>
         <h3>Categories:</h3>
         <hr />
         <div clas="menu-item">
@@ -98,4 +117,4 @@ class SideBar extends React.Component {
   }
 }
 
-export default SideBar;
+export default withRouter(SideBar);

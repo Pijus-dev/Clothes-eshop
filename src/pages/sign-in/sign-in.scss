@@ -1,7 +1,6 @@
 .sign-up-content {
   display: flex;
   justify-content: center;
-  align-items: center;
 
   .sign-up {
     margin-top: 50px;
@@ -14,13 +13,14 @@
     background-image: url("https://images.unsplash.com/photo-1434389677669-e08b4cac3105?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=949&q=80");
     background-size: cover;
 
-    @media screen and(max-width: 678px) {
+    @media screen and(max-width: 742px) {
       width: 70%;
-      margin: 100px auto 0 auto;
+      margin: 120px auto 0 auto;
     }
 
     .title {
       margin: 10px 0;
+      color: white;
     }
 
     .custom-button {

@@ -3,15 +3,21 @@ import styles from "./navbar.module.scss";
 
 import { Link } from "react-router-dom";
 
+import { auth } from "../../../firebase/firebase";
+
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import { selectCurrentUser } from "../../../redux/user/user.selectors";
+
 import SearchBar from "./searchBar/searchBar";
 import { Route, Switch } from "react-router-dom";
-import SignIn from "../sign-in/signIn.component";
+import SignIn from "../../../pages/sign-in/signIn.component";
 
 import { ReactComponent as Logo } from "/Users/user/Desktop/REACT/pamoka/src/img/crown.svg";
 
 class Navbar extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       className: "",
@@ -35,6 +41,7 @@ class Navbar extends React.Component {
 
   render() {
     const { className } = this.state;
+    const { currentUser } = this.props;
     return (
       <nav>
         <div className={className}>
@@ -48,12 +55,23 @@ class Navbar extends React.Component {
                 <Link className="links" to="/">
                   HOME
                 </Link>
-                <Link className="links" to="/signin">
-                  REGISTER
-                </Link>
-                <Link className="links" to="/signin">
-                  LOGIN
-                </Link>
+                {!currentUser ? (
+                  <Link className="links" to="/signin">
+                    REGISTER
+                  </Link>
+                ) : null}
+                {!currentUser ? (
+                  <Link className="links" to="/login">
+                    LOGIN
+                  </Link>
+                ) : null}
+                {currentUser ? (
+                  <div className="links" onClick={() => auth.signOut()}>
+                    <a href="" onClick={() => auth.signOut()}>
+                      LOGOUT
+                    </a>
+                  </div>
+                ) : null}
               </div>
             </div>
           </div>
@@ -65,4 +83,7 @@ class Navbar extends React.Component {
     );
   }
 }
-export default Navbar;
+const mapsStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+});
+export default connect(mapsStateToProps)(Navbar);

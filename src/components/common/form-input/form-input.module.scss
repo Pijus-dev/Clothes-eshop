@@ -11,7 +11,7 @@ $main-color: black;
   position: relative;
   margin: 45px 0;
 
-  .form-input {
+  .formInput {
     background: none;
     font-size: 18px;
     padding: 10px 10px 10px 5px;
@@ -26,7 +26,7 @@ $main-color: black;
       outline: none;
     }
 
-    &:focus ~ .form-input-label {
+    &:focus ~ .formInputLabel {
       @include shrinkLabel();
     }
   }
@@ -35,7 +35,7 @@ $main-color: black;
     letter-spacing: 0.3em;
   }
 
-  .form-input-label {
+  .formInputLabel {
     color: white;
     font-size: 16px;
     font-weight: normal;

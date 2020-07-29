@@ -9,7 +9,14 @@ class NavigationBarLink extends React.Component {
   }
 
   render() {
-    const { title, link, categories, handleChange, showMenu, } = this.props;
+    const {
+      title,
+      link,
+      categories,
+      handleChange,
+      showMenu,
+      handleCategoryChange,
+    } = this.props;
     return (
       <span className="navigation-bar__link">
         <a
@@ -20,7 +27,11 @@ class NavigationBarLink extends React.Component {
           {title}
         </a>
         {categories ? (
-          <NavigationDropdown open={showMenu} categories={categories} />
+          <NavigationDropdown
+            open={showMenu}
+            categories={categories}
+            handleCategoryChange={handleCategoryChange}
+          />
         ) : null}
       </span>
     );

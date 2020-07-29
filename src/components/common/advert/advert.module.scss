@@ -19,6 +19,10 @@ $desktop: "screen and (min-width: 1186px)";
       opacity: 0.85;
     }
 
+    @media screen and (max-width: 762px) {
+      height: 200px;
+    }
+
     @media #{$tablet-breakpoint} {
       height: 210px;
     }

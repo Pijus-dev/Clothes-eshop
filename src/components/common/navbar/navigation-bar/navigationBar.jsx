@@ -19,8 +19,10 @@ class NavigationBar extends React.Component {
               // link: "https://www.google.com/",
             },
             {
+              id: "girl-clothes",
               title: "Clothes",
               icon: "girl-outfit",
+              selected: true,
               subcatogories: [
                 {
                   title: "See All",
@@ -41,8 +43,10 @@ class NavigationBar extends React.Component {
               ],
             },
             {
+              id: "girl-shoe",
               title: "Shoes",
               icon: "girl-shoe",
+              selected: false,
               subcatogories: [
                 {
                   title: "High Heels",
@@ -59,8 +63,10 @@ class NavigationBar extends React.Component {
               ],
             },
             {
+              id: "girl-accessorie",
               title: "Accessories",
               icon: "girl-clothes",
+              selected: false,
               subcatogories: [
                 {
                   title: "Glasses",
@@ -89,8 +95,10 @@ class NavigationBar extends React.Component {
               // link: "https://www.google.com/",
             },
             {
+              id: "man-clothes",
               title: "Clothes",
               icon: "man-clothes",
+              selected: true,
               subcatogories: [
                 {
                   title: "See All",
@@ -111,8 +119,10 @@ class NavigationBar extends React.Component {
               ],
             },
             {
+              id: "man-shoe",
               title: "Shoes",
               icon: "man-shoe",
+              selected: false,
               subcatogories: [
                 {
                   title: "Sandals",
@@ -129,8 +139,10 @@ class NavigationBar extends React.Component {
               ],
             },
             {
+              id: "man-accessorie",
               title: "Accessories",
               icon: "man-other",
+              selected: false,
               subcatogories: [
                 {
                   title: "Glasses",
@@ -166,8 +178,8 @@ class NavigationBar extends React.Component {
 
   closeDropdown = (e) => {
     if (
-      this.navigationBaref &&
-      !this.navigationBaref.current.contains(e.target)
+      (this.navigationBaref &&
+        !this.navigationBaref.current.contains(e.target))
     ) {
       this.setState({
         navigationLinks: this.state.navigationLinks.map((el) => {
@@ -178,6 +190,25 @@ class NavigationBar extends React.Component {
         }),
       });
     }
+  };
+
+  handleCategoryChange = (navLinkId) => {
+    return (categoryId) => {
+      this.setState({
+        navigationLinks: this.state.navigationLinks.map((navLink) => {
+          return {
+            ...navLink,
+            categories:
+              navLink.id === navLinkId
+                ? navLink.categories.map((category) => ({
+                    ...category,
+                    selected: category.id === categoryId,
+                  }))
+                : navLink.categories,
+          };
+        }),
+      });
+    };
   };
 
   toggleDropdown = (id) => {
@@ -211,6 +242,7 @@ class NavigationBar extends React.Component {
           navLinkObj.categories
             ? {
                 handleChange: () => this.toggleDropdown(navLinkObj.id),
+                handleCategoryChange: this.handleCategoryChange(navLinkObj.id),
                 otherLinks: this.state.otherLinks,
               }
             : null)()}

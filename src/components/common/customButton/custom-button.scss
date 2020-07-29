@@ -20,6 +20,16 @@
     border: 1px solid black;
   }
 
+  &.google-sign-in {
+    background-color: #e9dab9;
+    color: white;
+
+    &:hover {
+      background-color: #c0b192;
+      border: none;
+    }
+  }
+
   &.inverted {
     background-color: white;
     color: black;
