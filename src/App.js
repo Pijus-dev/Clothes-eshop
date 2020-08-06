@@ -14,8 +14,13 @@ import Login from "./pages/login/login";
 
 import Navbar from "../src/components/common/navbar/navbar.component";
 import Footer from "../src/components/common/footer/footer.component";
+import Checkout from "../src/pages/checkout/checkout.component";
+import SingleProduct from "../src/pages/singleProduct/singleProduct.component";
+import NotFound from "../src/pages/not-found/not-found.component";
 
-import Products from "./pages/shop.component";
+import Home from "./pages/home/home.component";
+import Shop from "../src/pages/shop/shop.component";
+
 import "./App.scss";
 
 import SideBar from "./components/common/sideBar/sideBar";
@@ -29,7 +34,7 @@ class App extends React.Component {
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
         const userRef = await createUserProfile(userAuth);
-        
+
         userRef.onSnapshot((snapShot) => {
           setCurrentUser({
             id: snapShot.id,
@@ -54,7 +59,18 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/signin" component={SignIn} />
           <Route exact path="/login" component={Login} />
-          <Route exact path="/" component={Products} />
+          <Route exact path="/shop" component={Shop} />
+          <Route exact path="/shop/:sex" component={Shop} />
+          <Route exact path="/shop/:sex/:category" component={Shop} />
+          <Route
+            exact
+            path="/shop/:sex/:category/:subcategory"
+            component={Shop}
+          />
+          <Route exact path="/product/id/:id" component={SingleProduct} />
+          <Route exact path="/" component={Home} />
+          <Route exact path="/checkout" component={Checkout} />
+          <Route component={NotFound} />
         </Switch>
         <Footer />
       </div>

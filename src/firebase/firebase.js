@@ -38,6 +38,26 @@ export const createUserProfile = async (userAuth, addInfo) => {
   return userRef;
 };
 
+export const getPopularProducts = (callback) => {
+  const array = [];
+  firebase
+    .firestore()
+    .collection("popularProducts")
+    .get()
+    .then((data) => {
+      data.forEach((doc) => {
+        const obj = {
+          id: doc.id,
+          name: doc.data().name,
+          price: doc.data().price,
+          imageUrl: doc.data().imageUrl,
+        };
+        array.push(obj);
+      });
+      callback(array)
+    });
+};
+
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 

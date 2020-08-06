@@ -1,5 +1,8 @@
 import React from "react";
 
+import { Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
+
 import styles from "./navigation-dropdown.module.scss";
 
 import CategoryLinks from "../../navigation-bar/navigation-dropdown/category-links/categoryLinks";
@@ -11,6 +14,8 @@ const NavigationDropdown = ({
   categories,
   otherLinks,
   handleCategoryChange,
+  match,
+  history,
 }) => {
   const categoryLinks = categories.map(({ link, title, icon, id }) => (
     <CategoryLinks
@@ -27,9 +32,9 @@ const NavigationDropdown = ({
     .find((el) => el.selected)
     .subcatogories.map(({ title, link }) => (
       <li key={title} className={styles.subcategoryLink}>
-        <a href={link} className={styles.title}>
+        <Link to={link} className={styles.title}>
           {title}
-        </a>
+        </Link>
       </li>
     ));
 
@@ -48,4 +53,4 @@ const NavigationDropdown = ({
   );
 };
 
-export default NavigationDropdown;
+export default withRouter(NavigationDropdown);

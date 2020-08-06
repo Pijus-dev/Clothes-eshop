@@ -18,18 +18,28 @@ const SignIn = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [message, setMessage] = useState("");
   const [display, setDisplay] = useState(false);
+  const [className, setClassName] = useState("");
 
   const { displayName, email, password, confirmPassword } = userInfo;
+  let pattern = /^[A-Z]/;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      // setUserInfo({ message: "Passwords do not match", display: true });
       setErrorMessage("Passwords do not match");
+      setClassName("animate__animated animate__shakeX");
 
       return;
     }
+
+  
+      if (!pattern.test(password[0])) {
+        setErrorMessage("Password has to start from the capital");
+        setClassName("animate__animated animate__shakeX");
+        return false;
+      }
+
 
     try {
       const { user } = await auth.createUserWithEmailAndPassword(
@@ -47,8 +57,8 @@ const SignIn = () => {
       setMessage("You have successfully logged in");
       setDisplay(true);
     } catch (e) {
-      // setUserInfo({ message: e.message, display: true });
       setErrorMessage(e.message);
+      setClassName("animate__animated animate__shakeX");
     }
   };
 
@@ -60,48 +70,50 @@ const SignIn = () => {
 
   return (
     <div className="sign-up-content">
-      <div className="sign-up animate__animated animate__bounceInDown">
-        <h2 className="title">Welcome, please sign up</h2>
-        <Notification
-          message={message}
-          errorMessage={errorMessage}
-          display={display}
-        />
-        <form className="sign-up-form" onSubmit={handleSubmit}>
-          <FormInput
-            type="text"
-            name="displayName"
-            value={displayName}
-            handleChange={handleChange}
-            label="DisplayName"
-            required
-          ></FormInput>
-          <FormInput
-            type="email"
-            name="email"
-            value={email}
-            handleChange={handleChange}
-            label="Email"
-            required
-          ></FormInput>
-          <FormInput
-            type="password"
-            name="password"
-            value={password}
-            handleChange={handleChange}
-            label="Password"
-            required
-          ></FormInput>
-          <FormInput
-            type="password"
-            name="confirmPassword"
-            value={confirmPassword}
-            handleChange={handleChange}
-            label="Confirm Password"
-            required
-          ></FormInput>
-          <CustomButton type="submit">SIGN UP</CustomButton>
-        </form>
+      <div className={className}>
+        <div className="sign-up animate__animated animate__bounceInDown">
+          <h2 className="title">Welcome, please sign up</h2>
+          <Notification
+            message={message}
+            errorMessage={errorMessage}
+            display={display}
+          />
+          <form className="sign-up-form" onSubmit={handleSubmit}>
+            <FormInput
+              type="text"
+              name="displayName"
+              value={displayName.trim()}
+              handleChange={handleChange}
+              label="DisplayName"
+              required
+            ></FormInput>
+            <FormInput
+              type="email"
+              name="email"
+              value={email.trim()}
+              handleChange={handleChange}
+              label="Email"
+              required
+            ></FormInput>
+            <FormInput
+              type="password"
+              name="password"
+              value={password.trim()}
+              handleChange={handleChange}
+              label="Password"
+              required
+            ></FormInput>
+            <FormInput
+              type="password"
+              name="confirmPassword"
+              value={confirmPassword.trim()}
+              handleChange={handleChange}
+              label="Confirm Password"
+              required
+            ></FormInput>
+            <CustomButton type="submit">SIGN UP</CustomButton>
+          </form>
+        </div>
       </div>
     </div>
   );

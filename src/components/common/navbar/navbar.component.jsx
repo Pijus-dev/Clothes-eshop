@@ -8,10 +8,13 @@ import { auth } from "../../../firebase/firebase";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectCurrentUser } from "../../../redux/user/user.selectors";
+import { selectCartHidden } from "../../../redux/cart/cart.selectors";
 
 import SearchBar from "./searchBar/searchBar";
 import { Route, Switch } from "react-router-dom";
 import SignIn from "../../../pages/sign-in/signIn.component";
+import CartIcon from "../../cartIcon/cartIcon.component";
+import Cart from "../../cart/cart.component";
 
 import { ReactComponent as Logo } from "/Users/user/Desktop/REACT/pamoka/src/img/crown.svg";
 
@@ -41,17 +44,21 @@ class Navbar extends React.Component {
 
   render() {
     const { className } = this.state;
-    const { currentUser } = this.props;
+    const { currentUser, hidden } = this.props;
     return (
       <nav>
         <div className={className}>
           <div className={styles.navBorder}>
             <div className={styles.navContainer}>
               <div className={styles.logo}>
-                <Logo />
+                <Link to="/">
+                  <Logo />
+                </Link>
               </div>
               <div className={styles.searchExpand}>
                 <SearchBar />
+                {currentUser ? <CartIcon /> : null}
+                {hidden ? null : <Cart />}
                 <Link className="links" to="/">
                   HOME
                 </Link>
@@ -85,5 +92,6 @@ class Navbar extends React.Component {
 }
 const mapsStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
+  hidden: selectCartHidden,
 });
 export default connect(mapsStateToProps)(Navbar);

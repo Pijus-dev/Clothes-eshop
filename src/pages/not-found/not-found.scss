@@ -1,0 +1,30 @@
+.error-page {
+  height: 90vh;
+  background-image: url("https://media.giphy.com/media/xT9IgIc0lryrxvqVGM/giphy.gif");
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  .title {
+    display: flex;
+    width: 40%;
+    height: 40vh;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 130px;
+    margin-left: 40px;
+
+    h1 {
+      color: white;
+      font-style: italic;
+      letter-spacing: 4px;
+      font-weight: bolder;
+
+      &:first-child {
+        font-size: 80px;
+        margin-bottom: 0;
+      }
+    }
+  }
+}

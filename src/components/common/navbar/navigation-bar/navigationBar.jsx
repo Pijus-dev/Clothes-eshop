@@ -16,7 +16,7 @@ class NavigationBar extends React.Component {
             {
               title: "See all",
               icon: "all",
-              // link: "https://www.google.com/",
+              link: "/shop/female",
             },
             {
               id: "girl-clothes",
@@ -26,19 +26,19 @@ class NavigationBar extends React.Component {
               subcatogories: [
                 {
                   title: "See All",
-                  link: "https://www.google.com/",
+                  link: "/shop/female/clothes/",
                 },
                 {
                   title: "Sweaters",
-                  link: "https://www.google.com/",
+                  link: "/shop/female/clothes/jumpers",
                 },
                 {
                   title: "Skirts",
-                  link: "https://www.google.com/",
+                  link: "/shop/female/clothes/skirts",
                 },
                 {
                   title: "Jeans",
-                  link: "https://www.google.com/",
+                  link: "/shop/female/clothes/Jeans",
                 },
               ],
             },
@@ -50,15 +50,15 @@ class NavigationBar extends React.Component {
               subcatogories: [
                 {
                   title: "High Heels",
-                  link: "https://www.google.com/",
+                  link: "/shop/female/clothes/dresses",
                 },
                 {
                   title: "Sneakers",
-                  link: "https://www.google.com/",
+                  link: "/shop/female/shoes/sandals",
                 },
                 {
                   title: "Boots",
-                  link: "https://www.google.com/",
+                  link: "/shop/female/shoes/boots",
                 },
               ],
             },
@@ -70,15 +70,15 @@ class NavigationBar extends React.Component {
               subcatogories: [
                 {
                   title: "Glasses",
-                  link: "https://www.google.com/",
+                  link: "/shop/female/accessories/glasses",
                 },
                 {
                   title: "Piercings",
-                  link: "https://www.google.com/",
+                  link: "/shop/female/accessories/piercings",
                 },
                 {
                   title: "Other",
-                  link: "https://www.google.com/",
+                  link: "/shop/female/accessories/other",
                 },
               ],
             },
@@ -92,7 +92,7 @@ class NavigationBar extends React.Component {
             {
               title: "See all",
               icon: "all",
-              // link: "https://www.google.com/",
+              link: "/shop/male",
             },
             {
               id: "man-clothes",
@@ -102,19 +102,19 @@ class NavigationBar extends React.Component {
               subcatogories: [
                 {
                   title: "See All",
-                  link: "https://www.google.com/",
+                  link: "/shop/male/clothes",
                 },
                 {
                   title: "Sweaters",
-                  link: "https://www.google.com/",
+                  link: "/shop/male/sweaters",
                 },
                 {
                   title: "Skirts",
-                  link: "https://www.google.com/",
+                  link: "/shop/male/skirts",
                 },
                 {
                   title: "Jeans",
-                  link: "https://www.google.com/",
+                  link: "/shop/male/clothes/jeans",
                 },
               ],
             },
@@ -126,15 +126,15 @@ class NavigationBar extends React.Component {
               subcatogories: [
                 {
                   title: "Sandals",
-                  link: "https://www.google.com/",
+                  link: "/shop/male/shoes/sandals",
                 },
                 {
                   title: "Sneakers",
-                  link: "https://www.google.com/",
+                  link: "/shop/male/sneakers",
                 },
                 {
                   title: "Boots",
-                  link: "https://www.google.com/",
+                  link: "/shop/male/boots",
                 },
               ],
             },
@@ -146,15 +146,15 @@ class NavigationBar extends React.Component {
               subcatogories: [
                 {
                   title: "Glasses",
-                  link: "https://www.google.com/",
+                  link: "/shop/male/accessories/glasses",
                 },
                 {
                   title: "Piercings",
-                  link: "https://www.google.com/",
+                  link: "/shop/male/accessories/piercings",
                 },
                 {
                   title: "Other",
-                  link: "https://www.google.com/",
+                  link: "/shop/male/accessories/other",
                 },
               ],
             },
@@ -178,8 +178,8 @@ class NavigationBar extends React.Component {
 
   closeDropdown = (e) => {
     if (
-      (this.navigationBaref &&
-        !this.navigationBaref.current.contains(e.target))
+      this.navigationBaref &&
+      !this.navigationBaref.current.contains(e.target)
     ) {
       this.setState({
         navigationLinks: this.state.navigationLinks.map((el) => {

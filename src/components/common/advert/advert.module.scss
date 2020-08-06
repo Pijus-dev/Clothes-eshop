@@ -12,6 +12,7 @@ $desktop: "screen and (min-width: 1186px)";
     background-size: cover;
     width: 100%;
     background-position: 0% 20%;
+    overflow: hidden;
 
     &:hover {
       transform: scale(1.1);
