@@ -38,7 +38,7 @@ class NavigationBar extends React.Component {
                 },
                 {
                   title: "Jeans",
-                  link: "/shop/female/clothes/Jeans",
+                  link: "/shop/female/clothes/jeans",
                 },
               ],
             },
@@ -106,11 +106,11 @@ class NavigationBar extends React.Component {
                 },
                 {
                   title: "Sweaters",
-                  link: "/shop/male/sweaters",
+                  link: "/shop/male/clothes/sweaters",
                 },
                 {
-                  title: "Skirts",
-                  link: "/shop/male/skirts",
+                  title: "Jackets",
+                  link: "/shop/male/clothes/jackets",
                 },
                 {
                   title: "Jeans",
@@ -130,11 +130,11 @@ class NavigationBar extends React.Component {
                 },
                 {
                   title: "Sneakers",
-                  link: "/shop/male/sneakers",
+                  link: "/shop/male/shoes/sneakers",
                 },
                 {
                   title: "Boots",
-                  link: "/shop/male/boots",
+                  link: "/shop/male/shoes/boots",
                 },
               ],
             },

@@ -23,7 +23,7 @@ const SingleProduct = ({ addItem, collections }) => {
 
   useEffect(() => {
     firestore
-      .collection("popularProducts")
+      .collection("allProducts")
       .doc(id)
       .get()
       .then((data) => {
@@ -37,15 +37,11 @@ const SingleProduct = ({ addItem, collections }) => {
     <div className="single-product">
       <div className="photo">
         <Carousel showArrows={true}>
-          <div>
-            <img src={photo[0]} alt="slides" />
-          </div>
-          <div>
-            <img src={photo[1]} alt="slides" />
-          </div>
-          <div>
-            <img src={photo[2]} alt="slides" />
-          </div>
+          {photo.map((image) => (
+            <div>
+              <img src={image} alt="slide-show picture" />
+            </div>
+          ))}
         </Carousel>
       </div>
       <div className="product-details">

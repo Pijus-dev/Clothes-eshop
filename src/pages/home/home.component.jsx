@@ -8,13 +8,16 @@ import { firestore, getPopularProducts } from "../../firebase/firebase";
 import { connect } from "react-redux";
 import { popularProductsCollections } from "../../redux/popularProducts/popularProducts.action";
 
+
 import "./home.scss";
 
 class Home extends React.Component {
+  state = {
+    loading: true,
+  };
   componentDidMount() {
     const { popularProductsCollections } = this.props;
-    getPopularProducts((data) => popularProductsCollections(data))
-
+    getPopularProducts((data) => popularProductsCollections(data));
   }
 
   render() {

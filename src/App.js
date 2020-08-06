@@ -18,6 +18,8 @@ import Checkout from "../src/pages/checkout/checkout.component";
 import SingleProduct from "../src/pages/singleProduct/singleProduct.component";
 import NotFound from "../src/pages/not-found/not-found.component";
 
+import Spinner from "../src/components/common/spinner/spinner.component";
+
 import Home from "./pages/home/home.component";
 import Shop from "../src/pages/shop/shop.component";
 

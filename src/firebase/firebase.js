@@ -42,7 +42,8 @@ export const getPopularProducts = (callback) => {
   const array = [];
   firebase
     .firestore()
-    .collection("popularProducts")
+    .collection("allProducts")
+    .where("popularProduct", "==", "true")
     .get()
     .then((data) => {
       data.forEach((doc) => {
@@ -54,7 +55,7 @@ export const getPopularProducts = (callback) => {
         };
         array.push(obj);
       });
-      callback(array)
+      callback(array);
     });
 };
 

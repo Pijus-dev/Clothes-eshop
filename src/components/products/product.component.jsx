@@ -9,7 +9,7 @@ import { addItem } from "../../redux/cart/cartActions";
 
 import CustomButton from "../common/customButton/customButton";
 
-const Product = ({ item, addItem, history }) => {
+const Product = ({ item, history }) => {
   const { imageUrl, name, price, id } = item;
 
   const redirect = (productId) => {
