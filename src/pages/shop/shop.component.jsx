@@ -1,23 +1,33 @@
 import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 
 import { useParams } from "react-router-dom";
 import { firestore } from "../../firebase/firebase";
 
+import { popularProductsCollections } from "../../redux/popularProducts/popularProducts.action";
+
+import { selectSearchQuery } from "../../redux/searchQuery/searchQuery.selector";
+
 import Product from "../../components/products/product.component";
+import Spinner from "../../components/common/spinner/spinner.component";
 
 import styles from "./shop.module.scss";
 
-const Shop = () => {
+const Shop = ({ popularProductsCollections, searchValue }) => {
   const { category, sex, subcategory } = useParams();
   const [products, setProducts] = useState([]);
   const [isLoading, setLoading] = useState(true);
+  const [spinner, setSpinner] = useState(true);
 
-  useEffect(() => {
-    firestore
-      .collection("allProducts")
-      .where("sexCategory", "==", sex)
-      .where("mainCategory", "==", category)
-      .where("subCategory", "==", subcategory)
+  const queryProducts = () => {
+    let collection = firestore.collection("allProducts");
+
+    if (sex) collection = collection.where("sexCategory", "==", sex);
+    if (category) collection = collection.where("mainCategory", "==", category);
+    if (subcategory)
+      collection = collection.where("subCategory", "==", subcategory);
+    collection
       .get()
       .then((data) => {
         const array = [];
@@ -31,20 +41,50 @@ const Shop = () => {
           array.push(obj);
         });
         setProducts(array);
+        popularProductsCollections(array);
         setLoading(false);
+      })
+      .then(() => {
+        setSpinner(false);
       });
+  };
+
+  const filteredProducts = products.filter((product) => {
+    return product.name.toLowerCase().includes(searchValue.toLowerCase());
+  });
+
+  useEffect(() => {
+    queryProducts();
   }, []);
 
   return (
     <div>
-      <h1>{subcategory.toUpperCase()}</h1>
-      <div className={styles.productsGrid}>
-        {isLoading
-          ? null
-          : products.map((item) => <Product key={item.id} item={item} />)}
+      <Spinner isLoading={spinner} />
+      <div className={styles.filteredProducts}>
+        {subcategory ? (
+          <h2>{subcategory.toUpperCase()}</h2>
+        ) : (
+          <h2>All Clothes</h2>
+        )}
+        <div className={styles.productsGrid}>
+          {isLoading
+            ? null
+            : filteredProducts.map((item) => (
+                <Product key={item.id} item={item} />
+              ))}
+        </div>
       </div>
     </div>
   );
 };
 
-export default Shop;
+const mapDispatchToProps = (dispatch) => ({
+  popularProductsCollections: (collection) =>
+    dispatch(popularProductsCollections(collection)),
+});
+
+const mapStateToProps = createStructuredSelector({
+  searchValue: selectSearchQuery,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Shop);

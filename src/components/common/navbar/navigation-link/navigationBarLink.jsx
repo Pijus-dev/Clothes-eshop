@@ -22,10 +22,11 @@ class NavigationBarLink extends React.Component {
         <a
           className={`${showMenu ? "active" : null} navigation-bar__link__href`}
           href={link ?? null}
-          onClick={handleChange}
+          onMouseEnter={handleChange}
         >
           {title}
         </a>
+        <div className="nav-line"></div>
         {categories ? (
           <NavigationDropdown
             open={showMenu}

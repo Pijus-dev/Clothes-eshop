@@ -1,91 +1,22 @@
-import React, { useEffect, useState } from "react";
-import "./singleProduct.scss";
+import React from "react";
 
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
-import { selectPopularProductsCollections } from "../../redux//popularProducts/popularProduct.selector";
+import Comment from "../../components/comment/comment.component";
+import ProductDetails from "../../components/product-details/product-details.component";
 
-import CustomButton from "../../components/common/customButton/customButton";
-
-import { addItem } from "../../redux/cart/cartActions";
 
 import { firestore } from "../../firebase/firebase";
 import { useParams } from "react-router-dom";
 
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from "react-responsive-carousel";
 
-const SingleProduct = ({ addItem, collections }) => {
+const SingleProduct = () => {
   const { id } = useParams();
-  const [photo, setPhoto] = useState([]);
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
-
-  useEffect(() => {
-    firestore
-      .collection("allProducts")
-      .doc(id)
-      .get()
-      .then((data) => {
-        setPhoto(data.data().imageUrl);
-        setName(data.data().name);
-        setPrice(data.data().price);
-      });
-  }, []);
-
+  const db = firestore.collection("allProducts").doc(id);
   return (
-    <div className="single-product">
-      <div className="photo">
-        <Carousel showArrows={true}>
-          {photo.map((image) => (
-            <div>
-              <img src={image} alt="slide-show picture" />
-            </div>
-          ))}
-        </Carousel>
-      </div>
-      <div className="product-details">
-        <h1>{name}</h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae quae,
-          voluptates officiis obcaecati cum tempore voluptatem placeat
-          recusandae beatae animi consectetur ipsum incidunt architecto ab non
-          quam aspernatur, labore quo!
-        </p>
-        <div className="product-size">
-          <select>
-            ƒ<option value="">Please select a size</option>
-            <option value="L">L</option>
-            <option value="XL">XL</option>
-            <option value="S">S</option>
-            <option value="M">M</option>
-          </select>
-          <select>
-            <option>Please select a color</option>
-            <option value="red">red</option>
-            <option value="brown">brown</option>
-            <option value="blue">blue</option>
-            <option value="black">black</option>
-          </select>
-
-          <h3>Price: &euro;{price}</h3>
-          <CustomButton
-            onClick={() => addItem(collections.find((el) => el.id === id))}
-          >
-            ADD TO CART
-          </CustomButton>
-        </div>
-      </div>
+    <div>
+      <ProductDetails db={db} id={id} />
+      <Comment db={db} />
     </div>
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  addItem: (item) => dispatch(addItem(item)),
-});
-
-const mapStateToProps = createStructuredSelector({
-  collections: selectPopularProductsCollections,
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(SingleProduct);
+export default SingleProduct;

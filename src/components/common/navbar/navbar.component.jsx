@@ -16,6 +16,8 @@ import SignIn from "../../../pages/sign-in/signIn.component";
 import CartIcon from "../../cartIcon/cartIcon.component";
 import Cart from "../../cart/cart.component";
 
+import NavigationBar from "../navbar/navigation-bar/navigationBar";
+
 import { ReactComponent as Logo } from "/Users/user/Desktop/REACT/pamoka/src/img/crown.svg";
 
 class Navbar extends React.Component {
@@ -46,47 +48,50 @@ class Navbar extends React.Component {
     const { className } = this.state;
     const { currentUser, hidden } = this.props;
     return (
-      <nav>
-        <div className={className}>
-          <div className={styles.navBorder}>
-            <div className={styles.navContainer}>
-              <div className={styles.logo}>
-                <Link to="/">
-                  <Logo />
-                </Link>
-              </div>
-              <div className={styles.searchExpand}>
-                <SearchBar />
-                {currentUser ? <CartIcon /> : null}
-                {hidden ? null : <Cart />}
-                <Link className="links" to="/">
-                  HOME
-                </Link>
-                {!currentUser ? (
-                  <Link className="links" to="/signin">
-                    REGISTER
+      <div>
+        <nav>
+          <div className={className}>
+            <div className={styles.navBorder}>
+              <div className={styles.navContainer}>
+                <div className={styles.logo}>
+                  <Link to="/">
+                    <Logo />
                   </Link>
-                ) : null}
-                {!currentUser ? (
-                  <Link className="links" to="/login">
-                    LOGIN
+                </div>
+                <div className={styles.searchExpand}>
+                  <SearchBar />
+                  {currentUser ? <CartIcon /> : null}
+                  {hidden ? null : <Cart />}
+                  <Link className="links" to="/home">
+                    HOME
                   </Link>
-                ) : null}
-                {currentUser ? (
-                  <div className="links" onClick={() => auth.signOut()}>
-                    <a href="" onClick={() => auth.signOut()}>
+                  {!currentUser ? (
+                    <Link className="links" to="/signin">
+                      REGISTER
+                    </Link>
+                  ) : null}
+                  {!currentUser ? (
+                    <Link className="links" to="/login">
+                      LOGIN
+                    </Link>
+                  ) : null}
+                  {currentUser ? (
+                    <a href="" className="links" onClick={() => auth.signOut()}>
                       LOGOUT
                     </a>
-                  </div>
-                ) : null}
+                  ) : null}
+                </div>
               </div>
             </div>
           </div>
+          <div className={styles.mobileSearch}>
+            <SearchBar />
+          </div>
+        </nav>
+        <div className="container">
+          <NavigationBar />
         </div>
-        <div className={styles.mobileSearch}>
-          <SearchBar />
-        </div>
-      </nav>
+      </div>
     );
   }
 }

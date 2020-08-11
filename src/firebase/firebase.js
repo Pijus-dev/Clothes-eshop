@@ -52,6 +52,8 @@ export const getPopularProducts = (callback) => {
           name: doc.data().name,
           price: doc.data().price,
           imageUrl: doc.data().imageUrl,
+          size: doc.data().size,
+          color: doc.data().color,
         };
         array.push(obj);
       });
@@ -67,4 +69,4 @@ const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({ prompt: "select_account" });
 export const signInWithGoogle = () => auth.signInWithPopup(provider);
 
-export default firebase;
+export  {firebase};

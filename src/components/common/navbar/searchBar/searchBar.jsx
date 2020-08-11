@@ -1,34 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./searchBar.scss";
 
 import { FaSearch } from "react-icons/fa";
 
-class SearchBar extends React.Component {
-  constructor() {
-    super();
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 
-    this.state = {
-      searchText: "",
-    };
-  }
-  render() {
-    return (
-      <div className="search">
-        <div className="search-group">
-          <FaSearch className="icon" />
-          <input
-            type="text"
-            placeholder="search for products"
-            value={this.state.searchText}
-            onChange={(e) => this.setState({ searchText: e.target.value })}
-          />
-          {this.state.searchText ? (
-            <div className="delete">&#10005;</div>
-          ) : null}
-        </div>
+import { setSearchText } from "../../../../redux/searchQuery/searchQuery.actions";
+import { selectSearchQuery } from "../../../../redux/searchQuery/searchQuery.selector";
+
+const SearchBar = ({ setSearchText, searchText }) => {
+ 
+  return (
+    <div className="search">
+      <div className="search-group">
+        <FaSearch className="icon" />
+        <input
+          type="text"
+          placeholder="search for products"
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+        />
+        {searchText ? <div className="delete">&#10005;</div> : null}
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
-export default SearchBar;
+const mapDispatchToProps = (dispatch) => ({
+  setSearchText: (text) => dispatch(setSearchText(text)),
+});
+
+const mapStateToProps = createStructuredSelector({
+  searchText: selectSearchQuery,
+});
+
+export default connect(mapStateToProps,mapDispatchToProps)(SearchBar);

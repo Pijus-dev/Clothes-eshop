@@ -10,7 +10,9 @@ import { connect } from "react-redux";
 import { selectCartItems } from "../../redux/cart/cart.selectors";
 import { createStructuredSelector } from "reselect";
 
-const Cart = ({ cartItems, history }) => (
+import { toggleCartHidden } from "../../redux/cart/cartActions";
+
+const Cart = ({ cartItems, history, dispatch }) => (
   <div className={styles.cartDropdown}>
     <div className={styles.cartItems}>
       {cartItems.length ? (
@@ -22,7 +24,13 @@ const Cart = ({ cartItems, history }) => (
       )}
     </div>
     {cartItems.length ? (
-      <CustomButton isGoogleSignIn onClick={() => history.push("/checkout")}>
+      <CustomButton
+        isGoogleSignIn
+        onClick={() => {
+          history.push("/checkout");
+          dispatch(toggleCartHidden());
+        }}
+      >
         GO TO CHECKOUT
       </CustomButton>
     ) : null}

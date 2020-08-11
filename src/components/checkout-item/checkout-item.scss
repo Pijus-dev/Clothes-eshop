@@ -32,6 +32,13 @@
     width: 23%;
   }
 
+  .name {
+    p {
+      font-size: 1.12rem;
+      margin: 0;
+    }
+  }
+
   .quantity {
     display: flex;
 
@@ -42,6 +49,10 @@
       border: 1px solid rgb(44, 42, 128);
       border-radius: 20px;
       align-items: center;
+
+      @media screen and (max-width: 891px) {
+        width: 70%;
+      }
     }
 
     .arrow {

@@ -8,13 +8,20 @@ import {
   selectCartTotal,
 } from "../../redux/cart/cart.selectors";
 
-import CheckoutItem from "../../components/checkout-item/checkout-item.component";
+import { selectCurrentUser } from "../../redux/user/user.selectors";
 
-const Checkout = ({ cartItems, total }) => {
+import CheckoutItem from "../../components/checkout-item/checkout-item.component";
+import StripeCheckoutButton from "../../components/common/stripeButton/stripButton.component";
+
+const Checkout = ({ cartItems, total, currentUser }) => {
   return (
     <div className="checkout-page">
       <div className="checkout-content">
-        <p>Shopping Cart</p>
+        {total > 0 ? (
+          <p>This is your shopping cart, {currentUser.displayName}</p>
+        ) : (
+          <p>Your cart is empty, go back shopping, {currentUser.displayName}</p>
+        )}
         <hr />
         <div>
           {cartItems.map((item) => (
@@ -24,6 +31,9 @@ const Checkout = ({ cartItems, total }) => {
         <div className="total">
           <span>TOTAL: &euro; {total}</span>
         </div>
+        <div className="checkout-button">
+          {total > 0 ? <StripeCheckoutButton price={total} /> : null}
+        </div>
       </div>
     </div>
   );
@@ -32,6 +42,7 @@ const Checkout = ({ cartItems, total }) => {
 const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems,
   total: selectCartTotal,
+  currentUser: selectCurrentUser,
 });
 
 export default connect(mapStateToProps)(Checkout);

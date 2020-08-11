@@ -9,7 +9,7 @@ class Advert extends React.Component {
       <aside className={styles.gridAdvert}>
         <div className="container">
           <div className={styles.advert}></div>
-          <Navigationbar />
+          {/* <Navigationbar /> */}
         </div>
       </aside>
     );

@@ -11,7 +11,7 @@ import other from "../../../img/icons/other.svg";
 
 import CustomButton from "../../common/customButton/customButton";
 
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 
 import "./sidebar.scss";
 
@@ -76,7 +76,7 @@ class SideBar extends React.Component {
               </div>
               <div className="section-expanded ">
                 <img src={manShoes} alt="accessories" />
-                <a href="">Men Shoes</a>
+                <Link to="/shop/male/shoes/boots">Men Shoes</Link>
               </div>
             </div>
           ) : null}
@@ -103,7 +103,9 @@ class SideBar extends React.Component {
             <div className="other-section">
               <div className="section-expanded">
                 <img src={other} alt="accessories" />
-                <a href="">Women Accessories</a>
+                <Link to="/shop/female/accessories/glasses">
+                  Women Accessories
+                </Link>
               </div>
               <div className="section-expanded ">
                 <img src={girlShoe} alt="accessories" />

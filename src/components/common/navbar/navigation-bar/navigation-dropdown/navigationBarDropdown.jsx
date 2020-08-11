@@ -12,10 +12,7 @@ import SvgIcon from "../../../../svgIcon/index.js";
 const NavigationDropdown = ({
   open,
   categories,
-  otherLinks,
   handleCategoryChange,
-  match,
-  history,
 }) => {
   const categoryLinks = categories.map(({ link, title, icon, id }) => (
     <CategoryLinks
@@ -39,7 +36,7 @@ const NavigationDropdown = ({
     ));
 
   return (
-    <div className={`${styles.navigation} ${open ? styles.show : ""}`}>
+    <div  className={`${styles.navigation} ${open ? styles.show : ""}`}>
       <div className={styles.dropdown}>
         <div className={styles.menu}>
           <ul>{categoryLinks}</ul>

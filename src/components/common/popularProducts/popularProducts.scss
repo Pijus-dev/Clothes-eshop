@@ -22,10 +22,6 @@ $desktop: "screen and (min-width: 1186px)";
 
   h1 {
     margin-top: 30px;
-
-    @media #{$tablet-breakpoint} {
-      margin-top: 80px;
-    }
   }
 
   .products-loader-container {

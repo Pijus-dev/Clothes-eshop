@@ -9,13 +9,19 @@ import {
 } from "../../redux/cart/cartActions";
 
 const CheckoutItem = ({ item, addItem, removeItem, clearItem }) => {
-  const { name, imageUrl, price, quantity } = item;
+  const { name, imageUrl, price, quantity, selectedColor, selectedSize } = item;
   return (
     <div className="checkout-item">
       <div className="image-container">
         <img src={imageUrl} alt="" />
       </div>
-      <span className="name">{name}</span>
+      <span className="name">
+        {name}
+        <br />
+        <p>{selectedColor}</p>
+        <p>{selectedSize}</p>
+      </span>
+
       <span className="quantity">
         <div className="quantity-info">
           <div className="arrow" onClick={() => removeItem(item)}>

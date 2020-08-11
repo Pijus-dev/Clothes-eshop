@@ -10,7 +10,19 @@
     margin: 0 auto;
     border-radius: 8px;
     padding: 5px 20px;
-    box-shadow: 0px 2px 2px 3px #eee;
+    box-shadow: 0px 2px 2px 3px rgb(231, 214, 214);
+
+    @media screen and (max-width:987px) {
+      width: 80%;
+    }
+
+    @media screen and (max-width:767px) {
+      margin: 30px auto 0 auto;
+    }
+
+    @media screen and (max-width:547px) {
+      width: 95%;
+    }
 
     p {
       font-size: 1.67rem;
@@ -22,6 +34,18 @@
       display: flex;
       justify-content: flex-end;
       margin-right: 10px;
+    }
+    .checkout-button {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 15px;
+      padding-bottom: 10px;
+
+      .StripeCheckout {
+        button {
+          background-color: red;
+        }
+      }
     }
   }
 }

@@ -3,7 +3,7 @@ import React from "react";
 import Advert from "../../components/common/advert/advert.component";
 import PopularProducts from "../../components/common/popularProducts/popularProducts";
 
-import { firestore, getPopularProducts } from "../../firebase/firebase";
+import { getPopularProducts } from "../../firebase/firebase";
 
 import { connect } from "react-redux";
 import { popularProductsCollections } from "../../redux/popularProducts/popularProducts.action";
