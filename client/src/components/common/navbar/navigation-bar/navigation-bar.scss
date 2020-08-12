@@ -1,0 +1,8 @@
+.navigation-bar {
+  display: flex;
+  margin-top: 20px;
+
+  @media screen and (max-width: 624px) {
+    display: none;
+  }
+}

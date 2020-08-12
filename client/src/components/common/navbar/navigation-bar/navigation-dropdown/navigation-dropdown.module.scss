@@ -1,0 +1,112 @@
+.navigation {
+  position: absolute;
+  top: 40px;
+  width: 450px;
+  height: 300px;
+  box-shadow: 0px 1px 3px 3px rgb(231, 214, 214);
+  background: white;
+  display: none;
+  z-index: 100;
+  border-radius: 4px;
+
+  .dropdown {
+    display: flex;
+    justify-content: space-between;
+
+    .menu {
+      width: 150px;
+      padding: 5px;
+
+      ul {
+        padding-top: 6px;
+        padding-left: 6px;
+        margin: 0;
+
+        li {
+          a {
+            text-decoration: none;
+            color: black;
+            position: relative;
+
+            &::before {
+              content: "";
+              position: absolute;
+              width: 100%;
+              height: 2px;
+              bottom: -2px;
+              left: 0;
+              background-color: black;
+              visibility: hidden;
+              transform: scaleX(0);
+              transition: all 0.7s ease-in-out;
+            }
+
+            &:hover::before {
+              visibility: visible;
+              transform: scaleX(1);
+            }
+          }
+        }
+      }
+    }
+
+    .line {
+      height: 300px;
+      width: 2px;
+      background-color: #eee;
+      margin-left: 30px;
+    }
+
+    .other {
+      width: 300px;
+
+      ul {
+        padding: 0;
+        margin: 0;
+      }
+
+      li {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        border-bottom: 1px solid #eee;
+        align-items: center;
+        margin: 0;
+        height: 50px;
+
+        &:hover {
+          background-color: rgb(247, 240, 240);
+          text-decoration: none;
+          transform: unset;
+          font-weight: 600;
+        }
+      }
+
+      a {
+        text-decoration: none;
+        color: black;
+      }
+    }
+
+    li {
+      margin-bottom: 25px;
+      display: flex;
+      cursor: pointer;
+      font-size: 1.12rem;
+      transition: transform 0.25s ease-out;
+
+      &:hover {
+        transform: scale(1.09);
+      }
+
+      a {
+        margin-left: 7px;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.show {
+  display: block;
+}

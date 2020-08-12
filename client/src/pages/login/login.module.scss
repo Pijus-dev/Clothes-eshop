@@ -1,0 +1,44 @@
+.login {
+  height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("https://images.unsplash.com/photo-1469334031218-e382a71b716b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80");
+    background-size: cover;
+    background-position: center;
+
+  .loginContent {
+    display: flex;
+    justify-content: center;
+
+    .signIn {
+      background: transparent;
+      background-size: cover;
+      margin-top: 80px;
+      padding: 5px 30px 20px 30px;
+      box-shadow: 0px 1px 1px 1px #eee;
+      border-radius: 8px;
+      width: 560px;
+      display: flex;
+      flex-direction: column;
+  
+
+      @media screen and(max-width: 767px) {
+        width: 70%;
+        margin: 130px auto 0 auto;
+      }
+
+      .title {
+        margin: 10px 0px;
+        color: white;
+      }
+
+      .buttons {
+        display: flex;
+        justify-content: space-between;
+
+        @media screen and(max-width: 679px) {
+          display: block;
+        }
+      }
+    }
+  }
+}
