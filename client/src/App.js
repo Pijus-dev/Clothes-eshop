@@ -28,6 +28,10 @@ const SingleProduct = lazy(() =>
   import("../src/pages/singleProduct/singleProduct.component")
 );
 const Shipment = lazy(() => import("../src/pages/shipment/shipment.component"));
+const Order = lazy(() => import("../src/pages/orders/order.component"));
+const Favourites = lazy(() =>
+  import("../src/pages/favourites/favourites.component")
+);
 
 const NotFound = lazy(() =>
   import("../src/pages/not-found/not-found.component")
@@ -38,6 +42,8 @@ const ShopWithNavbar = withNavbar(Shop);
 const SingleProductWithNavbar = withNavbar(SingleProduct);
 const CheckoutWithNavbar = withNavbar(Checkout);
 const ShipmentWithNavbar = withNavbar(Shipment);
+const OrderWithNavbar = withNavbar(Order);
+const FavouritesWithNavbar = withNavbar(Favourites);
 
 class App extends React.Component {
   state = {
@@ -115,6 +121,12 @@ class App extends React.Component {
               <Route exact path="/" component={HomeCover} />
               <Route exact path="/checkout" component={CheckoutWithNavbar} />
               <Route exact path="/shipment" component={ShipmentWithNavbar} />
+              <Route exact path="/orders" component={OrderWithNavbar} />
+              <Route
+                exact
+                path="/favorites"
+                component={FavouritesWithNavbar}
+              />
               {/* <Route path="*" component={NotFound} /> */}
             </Suspense>
           </Switch>

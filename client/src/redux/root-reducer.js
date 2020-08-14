@@ -10,7 +10,7 @@ import searchQueryReducer from "./searchQuery/searchQuery.reducer";
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["cart"],
+  whitelist: ["cart", "user"],
 };
 
 const rootReducer = combineReducers({

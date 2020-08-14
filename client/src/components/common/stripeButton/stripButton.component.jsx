@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import StripeCheckout from "react-stripe-checkout";
 
@@ -11,6 +11,8 @@ import { selectCurrentUser } from "../../../redux/user/user.selectors";
 import { selectCartItems } from "../../../redux/cart/cart.selectors";
 import { createStructuredSelector } from "reselect";
 import { connect } from "react-redux";
+
+import { firestore, firebase } from "../../../firebase/firebase";
 
 import { clearAllItems } from "../../../redux/cart/cartActions";
 
@@ -31,6 +33,25 @@ const StripeCheckoutButton = ({
     );
   });
 
+  const itemsToAdd = cartItems.map((item) => {
+    return {
+      name: item.name,
+      price: item.price,
+      size: item.selectedSize,
+      color: item.selectedColor,
+      quantity: item.quantity,
+      date: firebase.firestore.Timestamp.fromDate(new Date()),
+    };
+  });
+
+  const addCartItem = (cartItem) => {
+    firestore
+      .collection("users")
+      .doc(currentUser.id)
+      .collection("cartItems")
+      .add(cartItem);
+  };
+
   const onToken = (token) => {
     axios({
       url: "payment",
@@ -43,6 +64,7 @@ const StripeCheckoutButton = ({
     })
       .then((repsonse) => {
         swal("YESS !!", "Payment was successful", "success");
+        itemsToAdd.forEach(addCartItem);
         history.push("/shipment");
         dispatch(clearAllItems());
         localStorage.clear();

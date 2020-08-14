@@ -1,64 +1,69 @@
 .comment-section {
-    width: 36%;
-    padding: 5px 25px 25px;
-    box-shadow: 0px 1px 3px 3px rgb(231, 214, 214);
-    border-radius: 8px;
-    height: 500px;
-    margin-top: -140px;
-    margin-left: auto;
-    margin-right: 141.36px;
-    // background-image: url("https://images.unsplash.com/photo-1434389677669-e08b4cac3105?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=949&q=80");
-    background-size: cover;
-    overflow: scroll;
-  
-    h1 {
-      color: black;
-      letter-spacing: 3px;
-      font-size: 1.65rem;
-      @media screen and (max-width: 767px) {
-        font-size: 1.123rem;
-      }
+  width: 36%;
+  padding: 5px 25px 25px;
+  box-shadow: 0px 1px 3px 3px rgb(231, 214, 214);
+  border-radius: 8px;
+  height: 500px;
+  margin-top: -140px;
+  margin-left: auto;
+  margin-right: 141.36px;
+  // background-image: url("https://images.unsplash.com/photo-1434389677669-e08b4cac3105?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=949&q=80");
+  background-size: cover;
+  overflow: scroll;
+
+  @media screen and(max-width: 740px) {
+    width: 70%;
+    margin: unset;
+  }
+
+  h1 {
+    color: black;
+    letter-spacing: 3px;
+    font-size: 1.65rem;
+    @media screen and (max-width: 767px) {
+      font-size: 1.123rem;
     }
-  
-    .text {
-      margin-top: 30px;
-      position: relative;
-  
-      textarea {
-        width: 100%;
-        border-radius: 8px;
-        border-color: #eee;
-        height: 100px;
-        resize: none;
-        overflow: scroll;
-        padding: 8px;
-        font-size: 0.95rem;
-      }
-      .rating {
-        position: absolute;
-        top: 10%;
-        right: 3%;
-      }
+  }
+
+  .text {
+    margin-top: 30px;
+    position: relative;
+
+    textarea {
+      width: 100%;
+      border-radius: 8px;
+      border-color: #eee;
+      height: 100px;
+      resize: none;
+      overflow: scroll;
+      padding: 8px;
+      font-size: 0.95rem;
     }
-  
-    .comment-button {
-      margin-top: 10px;
-      display: flex;
-      justify-content: flex-end;
-  
-      button {
-        border: none;
-        border-radius: 4px;
-        background-color: #e9dab9;
-        color: white;
-        padding: 6px 20px;
-        font-weight: 500;
-        font-size: 1rem;
-        cursor: pointer;
-  
-        &:hover {
-          background-color: #c0b192;
-        }
+    .rating {
+      position: absolute;
+      top: 10%;
+      right: 3%;
+    }
+  }
+
+  .comment-button {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+      border: none;
+      border-radius: 4px;
+      background-color: #e9dab9;
+      color: white;
+      padding: 6px 20px;
+      font-weight: 500;
+      font-size: 1rem;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #c0b192;
       }
     }
   }
+}

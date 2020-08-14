@@ -1,0 +1,39 @@
+.orderPage {
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 90vh;
+  margin: 0 auto;
+  overflow: visible;
+
+  @media screen and(max-width:837px) {
+    width: 70%;
+  }
+
+  @media screen and(max-width:837px) {
+    width: 90%;
+    margin-top: 50px;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 1.6rem;
+  }
+  .orderHeader {
+    width: 100%;
+    padding: 10px 0;
+    display: flex;
+    border-bottom: 1px solid darkgrey;
+
+    .headerBlock {
+      text-transform: capitalize;
+      width: 23%;
+      font-weight: bold;
+
+      &:last-child {
+        padding-left: 15px;
+      }
+    }
+  }
+}

@@ -42,7 +42,7 @@
     padding: 5px 20px;
     box-shadow: 0px 1px 3px 3px rgb(231, 214, 214);
     border-radius: 8px;
-    height: 450px;
+    height: 480px;
 
     @media screen and (max-width: 767px) {
       width: 80%;
@@ -68,6 +68,27 @@
         padding: 5px;
         font-size: 18px;
         margin-top: 15px;
+      }
+
+      .like {
+        background-color: #e9dab9;
+        margin-top: 10px;
+
+        i {
+          color: rgb(216, 89, 89);
+          padding-top: 5px;
+          padding-bottom: 5px;
+        }
+      }
+
+      .unlike {
+        background-color: rgb(216, 89, 89);
+        margin-top: 10px;
+
+        i {
+          padding-top: 5px;
+          padding-bottom: 5px;
+        }
       }
     }
   }

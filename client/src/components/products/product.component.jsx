@@ -1,11 +1,7 @@
 import React from "react";
 import "./product.scss";
 
-import { connect } from "react-redux";
-
 import { withRouter } from "react-router-dom";
-
-import { addItem } from "../../redux/cart/cartActions";
 
 import CustomButton from "../common/customButton/customButton";
 

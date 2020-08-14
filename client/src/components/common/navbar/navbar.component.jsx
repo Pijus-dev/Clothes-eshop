@@ -11,7 +11,7 @@ import { selectCurrentUser } from "../../../redux/user/user.selectors";
 import { selectCartHidden } from "../../../redux/cart/cart.selectors";
 
 import SearchBar from "./searchBar/searchBar";
-import { Route, Switch } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import SignIn from "../../../pages/sign-in/signIn.component";
 import CartIcon from "../../cartIcon/cartIcon.component";
 import Cart from "../../cart/cart.component";
@@ -46,7 +46,7 @@ class Navbar extends React.Component {
 
   render() {
     const { className } = this.state;
-    const { currentUser, hidden } = this.props;
+    const { currentUser, hidden, history } = this.props;
     return (
       <div>
         <nav>
@@ -62,6 +62,11 @@ class Navbar extends React.Component {
                   <SearchBar />
                   {currentUser ? <CartIcon /> : null}
                   {hidden ? null : <Cart />}
+                  {currentUser ? (
+                    <Link className="links" to="/favorites">
+                      <img src="https://img.icons8.com/ios/24/000000/like.png" />
+                    </Link>
+                  ) : null}
                   <Link className="links" to="/home">
                     HOME
                   </Link>
@@ -76,7 +81,20 @@ class Navbar extends React.Component {
                     </Link>
                   ) : null}
                   {currentUser ? (
-                    <a href="" className="links" onClick={() => auth.signOut()}>
+                    <Link className="links" to="/orders">
+                      ORDERS
+                    </Link>
+                  ) : null}
+                  {currentUser ? (
+                    <a
+                      href=""
+                      className="links"
+                      onClick={() => {
+                        auth.signOut();
+                        localStorage.clear();
+                        history.push("/");
+                      }}
+                    >
                       LOGOUT
                     </a>
                   ) : null}
@@ -99,4 +117,4 @@ const mapsStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
   hidden: selectCartHidden,
 });
-export default connect(mapsStateToProps)(Navbar);
+export default withRouter(connect(mapsStateToProps)(Navbar));

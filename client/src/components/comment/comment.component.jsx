@@ -10,7 +10,7 @@ import { createStructuredSelector } from "reselect";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 
 import { firestore, firebase } from "../../firebase/firebase";
-import  CommentSection  from "../common/ comment-section/commentSection";
+import CommentSection from "../common/ comment-section/commentSection";
 
 const Comment = ({ currentUser, history, db }) => {
   const [posts, setPosts] = useState([]);
@@ -61,6 +61,7 @@ const Comment = ({ currentUser, history, db }) => {
       <h1>Product reviews:</h1>
       {posts.map((post) => (
         <CommentSection
+          key={post.id}
           name={post.userName}
           comment={post.comment}
           time={post.postedTime.toDate().toLocaleDateString("lt")}

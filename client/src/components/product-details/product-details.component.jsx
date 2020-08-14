@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Spinner from "../common/spinner/spinner.component";
+import swal from "sweetalert";
 
 import { withRouter } from "react-router-dom";
 
@@ -13,9 +14,12 @@ import { addItem } from "../../redux/cart/cartActions";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
+import { firestore } from "../../firebase/firebase";
+
 import CustomButton from "../common/customButton/customButton";
 
 import "./product-details.scss";
+import Favourites from "../../pages/favourites/favourites.component";
 
 const ProductDetails = ({
   db,
@@ -34,6 +38,10 @@ const ProductDetails = ({
   const [size, setSize] = useState("");
   const [color, setColor] = useState("");
   const [colors, setColors] = useState([]);
+  const [favourites, setFavourites] = useState([]);
+  const [isFavoured, setFavoured] = useState(false);
+
+  const obj = { ...collections.find((el) => el.id === id) };
 
   const addProductToCart = () => {
     db.get()
@@ -50,9 +58,72 @@ const ProductDetails = ({
       });
   };
 
+  const getFavouriteItems = () => {
+    firestore
+      .collection("users")
+      .doc(currentUser.id)
+      .collection("favourites")
+      .get()
+      .then((data) => {
+        const array = [];
+        data.forEach((doc) => {
+          const obj = {
+            itemId: doc.data().id,
+            docId: doc.id,
+          };
+          array.push(obj);
+        });
+        setFavourites(array);
+      });
+  };
+
   useEffect(() => {
     addProductToCart();
+    getFavouriteItems();
   }, []);
+
+  useEffect(() => {
+    if (favourites.length >= 0) {
+      setFavoured(favourites.map(({ itemId }) => itemId).includes(obj.id));
+    }
+  }, [favourites]);
+
+  const addItemToCart = () => {
+    if (size == "" && color == "") {
+      swal("", "You havent choose any color or size", "info");
+    } else {
+      addItem({
+        ...collections.find((el) => el.id === id),
+        selectedColor: color,
+        selectedSize: size,
+      });
+    }
+  };
+
+  let fireId = favourites.find(({ itemId }) => itemId === obj.id);
+
+  const addItemToFavourites = () => {
+    if (isFavoured) {
+      firestore
+        .collection("users")
+        .doc(currentUser.id)
+        .collection("favourites")
+        .doc(fireId.docId)
+        .delete()
+        .then(() => {
+          setFavoured(false);
+        });
+    } else {
+      firestore
+        .collection("users")
+        .doc(currentUser.id)
+        .collection("favourites")
+        .add({ id: obj.id })
+        .then(() => {
+          setFavoured(true);
+        });
+    }
+  };
 
   return (
     <div>
@@ -90,15 +161,7 @@ const ProductDetails = ({
 
             <h3>Price: &euro;{price}</h3>
             {currentUser ? (
-              <CustomButton
-                onClick={() =>
-                  addItem({
-                    ...collections.find((el) => el.id === id),
-                    selectedColor: color,
-                    selectedSize: size,
-                  })
-                }
-              >
+              <CustomButton onClick={() => addItemToCart()}>
                 ADD TO CART
               </CustomButton>
             ) : (
@@ -106,6 +169,16 @@ const ProductDetails = ({
                 SIGN IN FIRST
               </CustomButton>
             )}
+            <CustomButton
+              className={`${isFavoured ? "unlike" : "like"} custom-button`}
+              onClick={() => addItemToFavourites()}
+            >
+              {!isFavoured ? (
+                <i class="far fa-heart fa-3x"></i>
+              ) : (
+                <i class="fas fa-heart-broken fa-3x"></i>
+              )}
+            </CustomButton>
           </div>
         </div>
       </div>
