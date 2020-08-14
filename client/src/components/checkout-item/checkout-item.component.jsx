@@ -1,6 +1,8 @@
 import React from "react";
 import "./checkout-item.scss";
 
+import { withRouter } from "react-router-dom";
+
 import { connect } from "react-redux";
 import {
   addItem,
@@ -8,12 +10,24 @@ import {
   clearItemFromCart,
 } from "../../redux/cart/cartActions";
 
-const CheckoutItem = ({ item, addItem, removeItem, clearItem }) => {
-  const { name, imageUrl, price, quantity, selectedColor, selectedSize } = item;
+const CheckoutItem = ({ item, addItem, removeItem, clearItem, history }) => {
+  const {
+    name,
+    imageUrl,
+    price,
+    quantity,
+    selectedColor,
+    selectedSize,
+    id,
+  } = item;
   return (
     <div className="checkout-item">
       <div className="image-container">
-        <img src={imageUrl} alt="" />
+        <img
+          src={imageUrl}
+          alt="checkout-photo"
+          onClick={() => history.push("/product/id/" + id)}
+        />
       </div>
       <span className="name">
         {name}
@@ -47,4 +61,4 @@ const mapDispatchToProps = (dispatch) => ({
   clearItem: (item) => dispatch(clearItemFromCart(item)),
 });
 
-export default connect(null, mapDispatchToProps)(CheckoutItem);
+export default withRouter(connect(null, mapDispatchToProps)(CheckoutItem));

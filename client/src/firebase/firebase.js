@@ -61,6 +61,15 @@ export const getPopularProducts = (callback) => {
     });
 };
 
+export const createProductObject = (doc) => {
+  return {
+    name: doc.data().name,
+    imageUrl: doc.data().imageUrl,
+    price: doc.data().price,
+    id: doc.id,
+  };
+};
+
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
@@ -69,4 +78,4 @@ const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({ prompt: "select_account" });
 export const signInWithGoogle = () => auth.signInWithPopup(provider);
 
-export  {firebase};
+export { firebase };

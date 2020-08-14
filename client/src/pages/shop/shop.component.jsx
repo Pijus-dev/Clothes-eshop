@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
 import { useParams } from "react-router-dom";
-import { firestore } from "../../firebase/firebase";
+import { firestore, createProductObject } from "../../firebase/firebase";
 
 import { popularProductsCollections } from "../../redux/popularProducts/popularProducts.action";
 
@@ -32,13 +32,7 @@ const Shop = ({ popularProductsCollections, searchValue }) => {
       .then((data) => {
         const array = [];
         data.forEach((doc) => {
-          const obj = {
-            name: doc.data().name,
-            price: doc.data().price,
-            imageUrl: doc.data().imageUrl,
-            id: doc.id,
-          };
-          array.push(obj);
+          array.push(createProductObject(doc));
         });
         setProducts(array);
         popularProductsCollections(array);

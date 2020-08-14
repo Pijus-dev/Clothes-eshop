@@ -91,7 +91,7 @@ class Navbar extends React.Component {
                       className="links"
                       onClick={() => {
                         auth.signOut();
-                        localStorage.clear();
+                        window.localStorage.clear();
                         history.push("/");
                       }}
                     >

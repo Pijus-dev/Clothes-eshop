@@ -2,20 +2,17 @@ import React, { useState, useEffect } from "react";
 
 import { firestore } from "../../firebase/firebase";
 
-import { selectCurrentUser } from "../../redux/user/user.selectors";
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
+import Spinner from "../../components/common/spinner/spinner.component";
 
 import OrderItem from "../../components/orderItem/orderItem.component";
+
+import { userId } from "../../helpers/currentUserId";
 
 import styles from "./order.module.scss";
 
 const Order = () => {
   const [order, setOrder] = useState([]);
-  const data = localStorage.getItem("persist:root");
-  const currentUser = JSON.parse(JSON.parse(data).user).currentUser;
-  const userId = currentUser.id ?? currentUser.uid;
-
+  const [loading, setLoading] = useState(true);
   const [keys, setKeys] = useState([]);
 
   const getCartItems = () => {
@@ -40,8 +37,10 @@ const Order = () => {
         if (array.length > 0) {
           setKeys(Object.keys(array[0]));
         }
-
         setOrder(array);
+      })
+      .then(() => {
+        setLoading(false);
       });
   };
 
@@ -51,6 +50,7 @@ const Order = () => {
 
   return (
     <div className={styles.orderPage}>
+      <Spinner isLoading={loading} />
       {keys.length > 0 ? (
         <h2>Order List</h2>
       ) : (
@@ -69,7 +69,5 @@ const Order = () => {
     </div>
   );
 };
-
-
 
 export default Order;

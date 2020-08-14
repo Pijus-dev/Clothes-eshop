@@ -16,10 +16,11 @@ import { createStructuredSelector } from "reselect";
 
 import { firestore } from "../../firebase/firebase";
 
+import { userId } from "../../helpers/currentUserId";
+
 import CustomButton from "../common/customButton/customButton";
 
 import "./product-details.scss";
-import Favourites from "../../pages/favourites/favourites.component";
 
 const ProductDetails = ({
   db,
@@ -61,7 +62,7 @@ const ProductDetails = ({
   const getFavouriteItems = () => {
     firestore
       .collection("users")
-      .doc(currentUser.id)
+      .doc(userId)
       .collection("favourites")
       .get()
       .then((data) => {
@@ -106,7 +107,7 @@ const ProductDetails = ({
     if (isFavoured) {
       firestore
         .collection("users")
-        .doc(currentUser.id)
+        .doc(userId)
         .collection("favourites")
         .doc(fireId.docId)
         .delete()
@@ -116,7 +117,7 @@ const ProductDetails = ({
     } else {
       firestore
         .collection("users")
-        .doc(currentUser.id)
+        .doc(userId)
         .collection("favourites")
         .add({ id: obj.id })
         .then(() => {
@@ -196,5 +197,5 @@ const mapStateToProps = createStructuredSelector({
 });
 
 export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(ProductDetails)
+  React.memo(connect(mapStateToProps, mapDispatchToProps)(ProductDetails))
 );

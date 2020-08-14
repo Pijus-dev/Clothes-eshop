@@ -9,11 +9,7 @@ import CategoryLinks from "../../navigation-bar/navigation-dropdown/category-lin
 
 import SvgIcon from "../../../../svgIcon/index.js";
 
-const NavigationDropdown = ({
-  open,
-  categories,
-  handleCategoryChange,
-}) => {
+const NavigationDropdown = ({ open, categories, handleCategoryChange }) => {
   const categoryLinks = categories.map(({ link, title, icon, id }) => (
     <CategoryLinks
       key={title}
@@ -36,7 +32,7 @@ const NavigationDropdown = ({
     ));
 
   return (
-    <div  className={`${styles.navigation} ${open ? styles.show : ""}`}>
+    <div className={`${styles.navigation} ${open ? styles.show : ""}`}>
       <div className={styles.dropdown}>
         <div className={styles.menu}>
           <ul>{categoryLinks}</ul>
@@ -50,4 +46,4 @@ const NavigationDropdown = ({
   );
 };
 
-export default withRouter(NavigationDropdown);
+export default withRouter(React.memo(NavigationDropdown));

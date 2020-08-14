@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 
-import { firestore } from "../../firebase/firebase";
+import { firestore, createProductObject } from "../../firebase/firebase";
+
+import  Spinner  from "../../components/common/spinner/spinner.component";
 
 import Product from "../../components/products/product.component";
 
@@ -9,6 +11,7 @@ import styles from "./favourites.module.scss";
 const Favourites = () => {
   const [favProductId, setFavProductId] = useState([]);
   const [favProducts, setFavProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const data = localStorage.getItem("persist:root");
   const currentUser = JSON.parse(JSON.parse(data).user).currentUser;
@@ -29,6 +32,9 @@ const Favourites = () => {
           array.push(obj);
         });
         setFavProductId(array);
+      })
+      .then(() => {
+        setLoading(false);
       });
   };
 
@@ -44,13 +50,7 @@ const Favourites = () => {
       .then((data) => {
         const array = [];
         data.forEach((doc) => {
-          const obj = {
-            name: doc.data().name,
-            imageUrl: doc.data().imageUrl,
-            price: doc.data().price,
-            id: doc.id,
-          };
-          array.push(obj);
+          array.push(createProductObject(doc));
         });
         setFavProducts(array);
       });
@@ -68,6 +68,7 @@ const Favourites = () => {
 
   return (
     <div className={styles.favourites}>
+      <Spinner isLoading={loading} />
       <h2>Favorite Products</h2>
       <div className={styles.products}>
         {favProducts.map((item) => (
